@@ -16,9 +16,21 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://school-web1.onrender.com'
+];
+
 app.use(cors({
-  origin: '*',          // ✅ allow requests from any origin
-  credentials: true,    // if you need cookies/auth headers
+  origin: function (origin, callback) {
+    // allow requests with no origin (like Postman)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
 app.use(express.json());
 
