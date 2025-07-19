@@ -18,7 +18,8 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://school-web1.onrender.com'
+  'https://school-web1.onrender.com',
+  'https://school-web-1-r9jy.onrender.com' 
 ];
 
 app.use(cors({
